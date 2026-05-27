@@ -11,16 +11,17 @@
 - [x] 执行 `/proactive_once` 并确认任务 completed/published。
 - [x] 执行 `/proactive_pause` 和 `/proactive_resume`。
 - [x] 记录一次失败场景，确认错误不泄露敏感信息。
-- [ ] 发布 `astrbot-plugin-proactive-chat==0.1.6` 到 PyPI。
+- [x] 发布 `astrbot-plugin-proactive-chat==0.1.6` 到 PyPI。
+- [x] 从 PyPI 干净安装 `astrbot-plugin-proactive-chat==0.1.6`，确认自动安装 core 并包含 AstrBot 入口文件。
 
 ## P1：社区上架
 
-- [ ] README 首页明确推荐 `astrbot-plugin-proactive-chat==0.1.6`。
-- [ ] 上架说明引用 `docs/COMMUNITY_LISTING.md`。
+- [x] README 首页明确推荐 `astrbot-plugin-proactive-chat==0.1.6`。
+- [x] 上架说明引用 `docs/COMMUNITY_LISTING.md`。
 - [ ] 准备配置页截图。
 - [ ] 准备 `/proactive_status` 截图。
 - [ ] 完成一次 QQ 实机记录并附到 issue 或 release comment。
-- [ ] 确认 `support_platforms` 暂只写 `aiocqhttp`。
+- [x] 确认 `support_platforms` 暂只写 `aiocqhttp`。
 
 ## P1：0.1.x 修复
 

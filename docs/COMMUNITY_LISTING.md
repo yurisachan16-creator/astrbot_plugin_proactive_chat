@@ -73,9 +73,9 @@ Discord 已在设计目标内，但在没有完成实机验证前，不建议写
 
 ## 上架前检查清单
 
-- [ ] `metadata.yaml` 版本与推荐安装版本一致。
-- [ ] README 中文安装说明指向 `0.1.6`。
-- [ ] `docs/INSTALL_ASTRBOT.md` 已完成一次 QQ 实机记录。
-- [ ] PyPI 页面能显示 `astrbot-plugin-proactive-chat==0.1.6`。
+- [x] `metadata.yaml` 版本与推荐安装版本一致。
+- [x] README 中文安装说明指向 `0.1.6`。
+- [x] `docs/INSTALL_ASTRBOT.md` 已完成一次 QQ 实机记录。
+- [x] PyPI 页面能显示 `astrbot-plugin-proactive-chat==0.1.6`。
 - [ ] GitHub Release `v0.1.6` 可访问。
 - [ ] 截图包含配置页和 `/proactive_status` 输出。
