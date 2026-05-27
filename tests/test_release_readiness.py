@@ -38,3 +38,13 @@ def test_pyproject_publishes_core_runtime_dependency():
     dependencies = pyproject["project"]["dependencies"]
 
     assert "astrbot-proactive-core>=0.1.0,<0.2.0" in dependencies
+
+
+def test_pyproject_wheel_includes_astrbot_plugin_entry_files():
+    pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    force_include = pyproject["tool"]["hatch"]["build"]["targets"]["wheel"]["force-include"]
+
+    assert force_include["main.py"] == "main.py"
+    assert force_include["metadata.yaml"] == "metadata.yaml"
+    assert force_include["_conf_schema.json"] == "_conf_schema.json"
+    assert force_include["requirements.txt"] == "requirements.txt"

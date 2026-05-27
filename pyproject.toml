@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "astrbot-plugin-proactive-chat"
-version = "0.1.1"
+version = "0.1.2"
 description = "AIRI-like proactive group chat plugin for AstrBot."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -27,6 +27,7 @@ dev = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["proactive_chat"]
+force-include = { "main.py" = "main.py", "metadata.yaml" = "metadata.yaml", "_conf_schema.json" = "_conf_schema.json", "requirements.txt" = "requirements.txt" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
