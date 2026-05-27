@@ -44,4 +44,5 @@
 - [x] `/proactive_status` 输出 voice input/output 和 STT/TTS provider 状态。
 - [x] status 输出脱敏，不暴露 token、Authorization、cookie、完整 URL、base64、本地路径。
 - [x] 保持现有语音 worker 行为：STT 失败不调用 LLM，TTS 失败回退文本，投递失败不计入限流。
+- [x] 创建 GitHub Release `v0.1.7` 并上传 sdist/wheel artifacts。
 - [ ] 对外发布 `0.1.7` 并重新跑干净 PyPI 安装验证。
