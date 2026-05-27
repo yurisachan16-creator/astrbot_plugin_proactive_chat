@@ -32,8 +32,8 @@
 
 ## P2：v0.2 设计
 
-- [ ] 固定 voice adapter 协议。
-- [ ] 给 `/proactive_status` 增加 STT/TTS provider 状态。
-- [ ] 设计 provider 插件模板仓库。
-- [ ] 决定第一个真实 provider 插件：本地 HTTP / OpenAI / Gemini。
-- [ ] 写 v0.2 design doc 后再进入实现。
+- [x] 固定 voice adapter 协议设计。
+- [x] 设计 `/proactive_status` 的 STT/TTS provider 状态输出。
+- [x] 设计 provider 插件模板仓库。
+- [x] 决定第一个真实 provider 插件：本地 HTTP provider。
+- [x] 写 v0.2 design doc，后续再进入实现。
