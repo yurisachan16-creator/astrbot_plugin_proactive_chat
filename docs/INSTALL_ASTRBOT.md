@@ -1,6 +1,6 @@
 # AstrBot 实机安装验证
 
-本文档用于验证 `astrbot-plugin-proactive-chat==0.1.4` 在真实 AstrBot 环境中的最小可用链路。
+本文档用于验证 `astrbot-plugin-proactive-chat==0.1.5` 在真实 AstrBot 环境中的最小可用链路。
 
 ## 目标
 
@@ -22,7 +22,7 @@
 推荐先用 PyPI 安装当前稳定版本：
 
 ```bash
-uv pip install astrbot-plugin-proactive-chat==0.1.4
+uv pip install astrbot-plugin-proactive-chat==0.1.5
 ```
 
 该命令应自动安装：
@@ -146,7 +146,7 @@ Discord v0 通过标准较低：
 ```markdown
 日期：
 AstrBot 版本：
-插件版本：0.1.4
+插件版本：0.1.5
 core 版本：0.1.0
 平台：QQ / Discord
 LLM provider：

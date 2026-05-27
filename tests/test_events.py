@@ -56,6 +56,10 @@ def test_extract_group_message_ignores_non_group_or_blank_message():
     assert extract_group_message(FakeEvent(message_str="   ")) is None
 
 
+def test_extract_group_message_ignores_slash_commands():
+    assert extract_group_message(FakeEvent(message_str="/proactive_status")) is None
+
+
 def test_extract_voice_group_message_from_record_component_url_or_file():
     message = extract_voice_group_message(
         FakeEvent(message_str="", message=[FakeRecord(url="http://example.com/a.wav")])

@@ -2,7 +2,7 @@
 
 ## P0：实机安装验证
 
-- [ ] 在真实 AstrBot 环境安装 `astrbot-plugin-proactive-chat==0.1.4`。
+- [ ] 在真实 AstrBot 环境安装 `astrbot-plugin-proactive-chat==0.1.5`。
 - [ ] 确认自动安装 `astrbot-proactive-core==0.1.0`。
 - [ ] 确认 AstrBot 插件列表能识别“主动消息”。
 - [ ] 确认配置页显示 `_conf_schema.json` 字段。
@@ -14,7 +14,7 @@
 
 ## P1：社区上架
 
-- [ ] README 首页明确推荐 `astrbot-plugin-proactive-chat==0.1.4`。
+- [ ] README 首页明确推荐 `astrbot-plugin-proactive-chat==0.1.5`。
 - [ ] 上架说明引用 `docs/COMMUNITY_LISTING.md`。
 - [ ] 准备配置页截图。
 - [ ] 准备 `/proactive_status` 截图。
@@ -23,8 +23,8 @@
 
 ## P1：0.1.x 修复
 
-- [ ] 判断是否需要发布 `0.1.5` 来修复 P0 实机验证发现的问题。
-- [ ] 如果发布 `0.1.5`，必须重新跑干净 PyPI 安装验证。
+- [ ] 判断是否需要发布 `0.1.6` 来修复 P0 实机验证发现的问题。
+- [ ] 如果发布 `0.1.6`，必须重新跑干净 PyPI 安装验证。
 - [ ] 把旧版本说明写入 release notes，推荐用户使用最新 patch。
 
 ## P2：v0.2 设计

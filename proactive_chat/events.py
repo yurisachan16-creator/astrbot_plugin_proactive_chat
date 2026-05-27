@@ -27,6 +27,8 @@ def extract_group_message(event: object) -> IncomingGroupMessage | None:
     text = str(getattr(event, "message_str", "") or "").strip()
     if group_id is None or not text:
         return None
+    if text.startswith("/"):
+        return None
 
     sender = getattr(message_obj, "sender", None)
     sender_id = getattr(sender, "user_id", "")
