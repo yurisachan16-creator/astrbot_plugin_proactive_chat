@@ -16,8 +16,22 @@
 
 当前 v0 拆成两个仓库：
 
-1. 先安装共享核心库 `astrbot_proactive_core`。
-2. 再把本仓库作为 AstrBot 社区插件安装。
+1. `astrbot-proactive-core`：共享队列和安全错误工具。
+2. `astrbot-plugin-proactive-chat`：AstrBot 社区插件入口。
+
+推荐安装当前完整可安装版本：
+
+```bash
+uv pip install astrbot-plugin-proactive-chat==0.1.2
+```
+
+它会自动安装兼容的核心库：
+
+```text
+astrbot-proactive-core>=0.1.0,<0.2.0
+```
+
+不要优先安装 `0.1.0` 或 `0.1.1`。`0.1.2` 是首个同时包含 PyPI runtime dependency 和完整 AstrBot 插件入口文件的版本。
 
 本地开发安装：
 
@@ -34,7 +48,7 @@ uv run --extra dev pytest -q
 uv run --extra dev ruff check .
 ```
 
-生产安装时，`requirements.txt` 会安装兼容的 `astrbot-proactive-core>=0.1.0,<0.2.0`。如果核心库还没有发布到 PyPI，可以先在 AstrBot 运行环境里用 Git 或本地路径安装核心库，再安装本插件。
+更多实机安装步骤见 [docs/INSTALL_ASTRBOT.md](docs/INSTALL_ASTRBOT.md)。社区上架材料见 [docs/COMMUNITY_LISTING.md](docs/COMMUNITY_LISTING.md)。
 
 ## 快速冒烟测试
 
