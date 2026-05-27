@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import asyncio
 
-from proactive_chat.management import QueueSnapshot, format_status
+from proactive_chat.management import QueueSnapshot, VoiceProviderSnapshot, VoiceSnapshot, format_status
+from proactive_chat.voice import VoiceProviderState
 
 
 def test_format_status_handles_missing_queue_and_worker():
@@ -35,6 +36,41 @@ def test_format_status_includes_queue_counts_when_available():
     assert "failed=1" in status
     assert "delivery_failed=1" in status
     assert "后台 worker: 运行中" in status
+
+
+def test_format_status_includes_voice_provider_status_and_redacts_details():
+    status = format_status(
+        QueueSnapshot(
+            queue_available=True,
+            worker_available=True,
+            background_running=False,
+            voice=VoiceSnapshot(
+                input_enabled=True,
+                output_enabled=True,
+                stt=VoiceProviderSnapshot(
+                    state=VoiceProviderState.FAILED,
+                    failure_code="stt_probe_failed",
+                    public_detail="Authorization: Bearer secret-token http://signed.example/audio.wav",
+                ),
+                tts=VoiceProviderSnapshot(
+                    state=VoiceProviderState.MISSING,
+                    failure_code="tts_provider_unavailable",
+                    public_detail="cookie=session-secret /Users/aitwo/private.wav data:audio/wav;base64,abc",
+                ),
+            ),
+        )
+    )
+
+    assert "voice:" in status
+    assert "- input: enabled" in status
+    assert "- output: enabled" in status
+    assert "- stt_provider: failed stt_probe_failed" in status
+    assert "- tts_provider: missing tts_provider_unavailable" in status
+    assert "secret-token" not in status
+    assert "session-secret" not in status
+    assert "signed.example" not in status
+    assert "/Users/aitwo" not in status
+    assert "base64" not in status
 
 
 class FakeContext:
@@ -72,6 +108,48 @@ def test_plugin_management_status_uses_queue_counts():
 
     assert "queued=3" in status
     assert "delivery_failed=1" in status
+
+
+class FakeSTTProvider:
+    pass
+
+
+class FakeTTSProvider:
+    pass
+
+
+class FakeVoiceContext(FakeContext):
+    def __init__(self, *, stt: object | None = None, tts: object | None = None) -> None:
+        self.stt = stt
+        self.tts = tts
+
+    def get_using_stt_provider(self) -> object | None:
+        return self.stt
+
+    def get_using_tts_provider(self) -> object | None:
+        return self.tts
+
+
+def test_plugin_management_status_includes_voice_provider_status_from_config():
+    from main import ProactiveChatPlugin
+
+    plugin = ProactiveChatPlugin(
+        FakeVoiceContext(stt=FakeSTTProvider(), tts=None),
+        {
+            "enabled_groups": ["10001"],
+            "voice_input_enabled": True,
+            "voice_output_enabled": True,
+        },
+        queue=FakeQueue(),
+        worker=FakeWorker(),
+    )
+
+    status = plugin.management_status()
+
+    assert "- input: enabled" in status
+    assert "- output: enabled" in status
+    assert "- stt_provider: available" in status
+    assert "- tts_provider: missing tts_provider_unavailable" in status
 
 
 def test_plugin_pause_resume_and_manual_process():

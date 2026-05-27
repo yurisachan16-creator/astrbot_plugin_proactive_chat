@@ -1,6 +1,6 @@
 # Voice Provider Boundary
 
-本文档固定 `astrbot_plugin_proactive_chat` v0.2 的语音边界。它是实现前的验收设计，不代表当前 `0.1.6` 已经完成所有状态探测。
+本文档固定 `astrbot_plugin_proactive_chat` v0.2 的语音边界。当前最小功能 slice 已在主插件内实现 provider status 诊断；独立 provider 模板仓库和本地 HTTP provider 插件仍是后续工作。
 
 ## 目标
 

@@ -2,7 +2,7 @@
 
 v0.2 的核心方向是固定 voice provider boundary，而不是继续把所有语音能力塞进 proactive chat 主插件。
 
-本阶段目标是“设计可验收”：主插件、AstrBot 当前 provider bridge、未来 provider 插件、状态诊断和测试门禁都要有明确边界。v0.2 设计通过后，再进入代码实现。
+当前 v0.2 最小功能 slice 已覆盖主插件内的 provider status 诊断：主插件、AstrBot 当前 provider bridge、未来 provider 插件、状态诊断和测试门禁都有明确边界。独立 provider 模板仓库和真实本地 HTTP provider 插件仍是后续工作。
 
 ## 架构原则
 
@@ -167,9 +167,17 @@ flowchart LR
 - provider 错误不泄露密钥、完整 URL、本地路径或原始 payload。
 - 至少一个 provider 插件模板可以被社区复制使用。
 
+## 当前功能验收状态
+
+- 已实现 `VoiceProviderState`、公开 provider probe 结果和 `/proactive_status` voice 区块。
+- 已覆盖 STT/TTS `available`、`missing`、`failed`、`disabled` 状态。
+- 已覆盖 status 输出脱敏，避免暴露 token、Authorization header、cookie、完整 URL、base64 和本地路径。
+- 已保持现有 worker 语义：STT 失败不调用 LLM，TTS 失败回退文本，投递失败不计入限流。
+- 未发布新的 PyPI patch；如需对外发版，应走 `0.1.x` 维护策略重新验证。
+
 ## 后续实现门禁
 
-实现 v0.2 runtime 变更前必须补测试：
+实现后续 v0.2 runtime 变更前必须继续保持这些测试：
 
 - `tests/test_voice.py`：STT/TTS available、missing provider、probe failure redaction。
 - `tests/test_management.py`：`/proactive_status` 包含 voice input/output 和 STT/TTS provider 状态，并验证脱敏。
