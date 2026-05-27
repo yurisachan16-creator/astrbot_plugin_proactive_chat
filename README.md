@@ -22,7 +22,7 @@
 推荐安装当前完整可安装版本：
 
 ```bash
-uv pip install astrbot-plugin-proactive-chat==0.1.2
+uv pip install astrbot-plugin-proactive-chat==0.1.3
 ```
 
 它会自动安装兼容的核心库：
@@ -31,7 +31,7 @@ uv pip install astrbot-plugin-proactive-chat==0.1.2
 astrbot-proactive-core>=0.1.0,<0.2.0
 ```
 
-不要优先安装 `0.1.0` 或 `0.1.1`。`0.1.2` 是首个同时包含 PyPI runtime dependency 和完整 AstrBot 插件入口文件的版本。
+不要优先安装 `0.1.0` 或 `0.1.1`。`0.1.3` 是当前推荐版本，包含 PyPI runtime dependency、完整 AstrBot 插件入口文件，以及 AstrBot 包路径导入修复。
 
 本地开发安装：
 

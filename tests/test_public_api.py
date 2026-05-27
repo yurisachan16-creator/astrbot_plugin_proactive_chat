@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import importlib
+from pathlib import Path
 import sys
 import types
 
@@ -9,7 +10,7 @@ import types
 def test_plugin_package_imports():
     import proactive_chat
 
-    assert proactive_chat.__version__ == "0.1.2"
+    assert proactive_chat.__version__ == "0.1.3"
 
 
 class FakeContext:
@@ -330,3 +331,32 @@ def test_plugin_uses_real_astrbot_star_when_register_helper_is_absent(monkeypatc
         sys.modules.pop("main", None)
         if original_main is not None:
             sys.modules["main"] = original_main
+
+
+def test_plugin_imports_under_astrbot_package_path(monkeypatch):
+    root = Path(__file__).resolve().parents[1]
+    package_names = [
+        "data",
+        "data.plugins",
+        "data.plugins.astrbot_plugin_proactive_chat",
+    ]
+    package_paths = [
+        str(root.parent),
+        str(root.parent),
+        str(root),
+    ]
+    for name, path in zip(package_names, package_paths, strict=True):
+        package = types.ModuleType(name)
+        package.__path__ = [path]
+        monkeypatch.setitem(sys.modules, name, package)
+
+    module_name = "data.plugins.astrbot_plugin_proactive_chat.main"
+    spec = importlib.util.spec_from_file_location(module_name, root / "main.py")
+    assert spec is not None
+    assert spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    monkeypatch.setitem(sys.modules, module_name, module)
+
+    spec.loader.exec_module(module)
+
+    assert module.ProactiveChatPlugin.__name__ == "ProactiveChatPlugin"

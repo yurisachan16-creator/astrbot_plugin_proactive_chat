@@ -2,22 +2,40 @@ from __future__ import annotations
 
 import asyncio
 
-from proactive_chat import __version__
-from proactive_chat.background import BackgroundWorkerRunner
-from proactive_chat.config import ProactiveChatConfig
-from proactive_chat.delivery import AstrBotMessenger
-from proactive_chat.events import (
-    enqueue_ambient_group_message,
-    enqueue_voice_group_message,
-    extract_group_message,
-    extract_voice_group_message,
-)
-from proactive_chat.llm import AstrBotLLMAdapter
-from proactive_chat.management import format_status, snapshot_queue
-from proactive_chat.queue_factory import create_default_queue
-from proactive_chat.rate_limit import InMemoryRateLimiter
-from proactive_chat.voice import AstrBotVoiceAdapter
-from proactive_chat.worker import AmbientWorker
+try:
+    from .proactive_chat import __version__
+    from .proactive_chat.background import BackgroundWorkerRunner
+    from .proactive_chat.config import ProactiveChatConfig
+    from .proactive_chat.delivery import AstrBotMessenger
+    from .proactive_chat.events import (
+        enqueue_ambient_group_message,
+        enqueue_voice_group_message,
+        extract_group_message,
+        extract_voice_group_message,
+    )
+    from .proactive_chat.llm import AstrBotLLMAdapter
+    from .proactive_chat.management import format_status, snapshot_queue
+    from .proactive_chat.queue_factory import create_default_queue
+    from .proactive_chat.rate_limit import InMemoryRateLimiter
+    from .proactive_chat.voice import AstrBotVoiceAdapter
+    from .proactive_chat.worker import AmbientWorker
+except ImportError:
+    from proactive_chat import __version__
+    from proactive_chat.background import BackgroundWorkerRunner
+    from proactive_chat.config import ProactiveChatConfig
+    from proactive_chat.delivery import AstrBotMessenger
+    from proactive_chat.events import (
+        enqueue_ambient_group_message,
+        enqueue_voice_group_message,
+        extract_group_message,
+        extract_voice_group_message,
+    )
+    from proactive_chat.llm import AstrBotLLMAdapter
+    from proactive_chat.management import format_status, snapshot_queue
+    from proactive_chat.queue_factory import create_default_queue
+    from proactive_chat.rate_limit import InMemoryRateLimiter
+    from proactive_chat.voice import AstrBotVoiceAdapter
+    from proactive_chat.worker import AmbientWorker
 
 
 try:

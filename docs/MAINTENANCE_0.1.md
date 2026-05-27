@@ -73,6 +73,6 @@ astrbot-plugin-proactive-chat==0.1.3
 
 候选内容：
 
-- `metadata.yaml` version 同步到 `v0.1.2` 或新的发布版本。
-- README 安装说明固定推荐 `0.1.2+`。
+- `metadata.yaml` version 同步到 `v0.1.3` 或新的发布版本。
+- README 安装说明固定推荐 `0.1.3+`。
 - 社区上架文档进入仓库。

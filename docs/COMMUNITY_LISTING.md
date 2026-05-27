@@ -10,14 +10,14 @@
 
 ## 推荐版本
 
-- 插件：`astrbot-plugin-proactive-chat==0.1.2`
+- 插件：`astrbot-plugin-proactive-chat==0.1.3`
 - 核心库：`astrbot-proactive-core==0.1.0`
 
 不要推荐 `0.1.0` 或 `0.1.1`：
 
 - `0.1.0` 的 PyPI wheel 未声明 core runtime dependency。
 - `0.1.1` 补了 dependency，但 wheel 未包含完整 AstrBot 插件入口文件。
-- `0.1.2` 是首个完整可安装版本。
+- `0.1.3` 是首个完整可安装版本。
 
 ## 仓库和包
 
@@ -74,8 +74,8 @@ Discord 已在设计目标内，但在没有完成实机验证前，不建议写
 ## 上架前检查清单
 
 - [ ] `metadata.yaml` 版本与推荐安装版本一致。
-- [ ] README 中文安装说明指向 `0.1.2`。
+- [ ] README 中文安装说明指向 `0.1.3`。
 - [ ] `docs/INSTALL_ASTRBOT.md` 已完成一次 QQ 实机记录。
-- [ ] PyPI 页面能显示 `astrbot-plugin-proactive-chat==0.1.2`。
-- [ ] GitHub Release `v0.1.2` 可访问。
+- [ ] PyPI 页面能显示 `astrbot-plugin-proactive-chat==0.1.3`。
+- [ ] GitHub Release `v0.1.3` 可访问。
 - [ ] 截图包含配置页和 `/proactive_status` 输出。
