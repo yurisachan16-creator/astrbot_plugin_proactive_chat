@@ -4,8 +4,11 @@ requires-python = ">=3.11"
 
 [[package]]
 name = "astrbot-plugin-proactive-chat"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "." }
+dependencies = [
+    { name = "astrbot-proactive-core" },
+]
 
 [package.optional-dependencies]
 dev = [
@@ -15,10 +18,20 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "astrbot-proactive-core", specifier = ">=0.1.0,<0.2.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.2.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.15.13" },
 ]
 provides-extras = ["dev"]
+
+[[package]]
+name = "astrbot-proactive-core"
+version = "0.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d9/60/86252d93b335faed66a78f74d333e1ae9fcbcda4575d93e115933465a986/astrbot_proactive_core-0.1.0.tar.gz", hash = "sha256:076e6db10434ff678f684cce8afa3204654ebd736f9903af8f06b023eb3320a4", size = 11233, upload-time = "2026-05-27T03:09:01.802Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7e/a1/253e479a6d47ddc0bee11973f167c29bde36fd7d0ebf7a12c93f9c8c441f/astrbot_proactive_core-0.1.0-py3-none-any.whl", hash = "sha256:850d2a5c386330dd5f0ff49363b9c16db94cca775903669551cd0cf55e307228", size = 6364, upload-time = "2026-05-27T03:09:03.044Z" },
+]
 
 [[package]]
 name = "colorama"

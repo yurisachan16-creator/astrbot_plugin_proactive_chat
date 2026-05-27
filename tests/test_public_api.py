@@ -9,7 +9,7 @@ import types
 def test_plugin_package_imports():
     import proactive_chat
 
-    assert proactive_chat.__version__ == "0.1.0"
+    assert proactive_chat.__version__ == "0.1.1"
 
 
 class FakeContext:
@@ -169,7 +169,20 @@ def test_plugin_starts_and_terminates_background_worker():
 def test_plugin_does_not_start_background_worker_without_worker():
     from main import ProactiveChatPlugin
 
-    plugin = ProactiveChatPlugin(FakeContext(), background_runner=FakeRunner())
+    plugin = ProactiveChatPlugin(
+        FakeContext(),
+        background_runner=FakeRunner(),
+        queue_factory=lambda _config: None,
+    )
+
+    assert plugin.start_background_worker() is False
+    assert plugin.background_task is None
+
+
+def test_plugin_does_not_start_background_worker_without_running_loop():
+    from main import ProactiveChatPlugin
+
+    plugin = ProactiveChatPlugin(FakeContext(), worker=FakeWorker(), background_runner=FakeRunner())
 
     assert plugin.start_background_worker() is False
     assert plugin.background_task is None

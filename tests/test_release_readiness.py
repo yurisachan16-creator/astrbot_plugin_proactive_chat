@@ -31,3 +31,10 @@ def test_pyproject_has_publish_metadata():
     assert project["authors"][0]["name"] == "aitwo"
     assert "AstrBot" in project["keywords"]
     assert project["urls"]["Repository"].startswith("https://github.com/")
+
+
+def test_pyproject_publishes_core_runtime_dependency():
+    pyproject = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))
+    dependencies = pyproject["project"]["dependencies"]
+
+    assert "astrbot-proactive-core>=0.1.0,<0.2.0" in dependencies

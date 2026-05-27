@@ -194,7 +194,11 @@ class ProactiveChatPlugin(Star):
             return False
         if self.background_task is not None and not self.background_task.done():
             return True
-        self.background_task = asyncio.create_task(self.background_runner.run())
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            return False
+        self.background_task = loop.create_task(self.background_runner.run())
         return True
 
     def pause_background_worker(self) -> str:

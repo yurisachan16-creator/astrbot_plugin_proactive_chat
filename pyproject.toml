@@ -4,13 +4,16 @@ build-backend = "hatchling.build"
 
 [project]
 name = "astrbot-plugin-proactive-chat"
-version = "0.1.0"
+version = "0.1.1"
 description = "AIRI-like proactive group chat plugin for AstrBot."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "aitwo" }]
 keywords = ["AstrBot", "proactive chat", "AIRI", "voice", "community plugin"]
+dependencies = [
+  "astrbot-proactive-core>=0.1.0,<0.2.0",
+]
 
 [project.urls]
 Repository = "https://github.com/yurisachan16-creator/astrbot_plugin_proactive_chat"
