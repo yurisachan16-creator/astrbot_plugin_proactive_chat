@@ -27,7 +27,7 @@ def extract_group_message(event: object) -> IncomingGroupMessage | None:
     text = str(getattr(event, "message_str", "") or "").strip()
     if group_id is None or not text:
         return None
-    if text.startswith("/"):
+    if _looks_like_command(text) or _looks_like_command(_raw_message_text(message_obj)):
         return None
 
     sender = getattr(message_obj, "sender", None)
@@ -92,6 +92,17 @@ def _first_record_url(components: list[object]) -> str:
             if value:
                 return value
     return ""
+
+
+def _raw_message_text(message_obj: object) -> str:
+    raw_message = getattr(message_obj, "raw_message", None)
+    if isinstance(raw_message, dict):
+        return str(raw_message.get("raw_message") or raw_message.get("message") or "").strip()
+    return str(getattr(raw_message, "raw_message", "") or getattr(raw_message, "message", "") or "").strip()
+
+
+def _looks_like_command(text: str) -> bool:
+    return text.strip().startswith("/")
 
 
 def _encode_voice_payload_ref(unified_msg_origin: str, audio_url: str) -> str:

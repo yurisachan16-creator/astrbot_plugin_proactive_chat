@@ -14,10 +14,12 @@ class FakeMessageObject:
         group_id: object = "10001",
         sender_id: object = "20001",
         message: list[object] | None = None,
+        raw_message: object | None = None,
     ) -> None:
         self.group_id = group_id
         self.sender = type("Sender", (), {"user_id": sender_id})()
         self.message = message or []
+        self.raw_message = raw_message
 
 
 class FakeEvent:
@@ -29,8 +31,9 @@ class FakeEvent:
         message_str: str = "今天聊什么？",
         unified_msg_origin: str = "aiocqhttp:group:10001",
         message: list[object] | None = None,
+        raw_message: object | None = None,
     ) -> None:
-        self.message_obj = FakeMessageObject(group_id, sender_id, message)
+        self.message_obj = FakeMessageObject(group_id, sender_id, message, raw_message)
         self.message_str = message_str
         self.unified_msg_origin = unified_msg_origin
 
@@ -58,6 +61,15 @@ def test_extract_group_message_ignores_non_group_or_blank_message():
 
 def test_extract_group_message_ignores_slash_commands():
     assert extract_group_message(FakeEvent(message_str="/proactive_status")) is None
+    assert (
+        extract_group_message(
+            FakeEvent(
+                message_str="proactive_status",
+                raw_message={"raw_message": "/proactive_status"},
+            )
+        )
+        is None
+    )
 
 
 def test_extract_voice_group_message_from_record_component_url_or_file():

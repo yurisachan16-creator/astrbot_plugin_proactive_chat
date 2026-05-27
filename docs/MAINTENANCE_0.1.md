@@ -63,16 +63,16 @@ uv pip install --refresh-package astrbot-plugin-proactive-chat --python /tmp/pro
 - `import main` 成功。
 - 文件型 SQLite 队列能写入一条测试 job。
 
-## 0.1.5 候选条件
+## 0.1.6 候选条件
 
 如果只修 `metadata.yaml` 版本号或 README 上架说明，可以先不立即发版；但如果 AstrBot 社区插件索引直接读取 PyPI wheel 内的 `metadata.yaml`，则应发布：
 
 ```text
-astrbot-plugin-proactive-chat==0.1.5
+astrbot-plugin-proactive-chat==0.1.6
 ```
 
 候选内容：
 
-- `metadata.yaml` version 同步到 `v0.1.5` 或新的发布版本。
-- README 安装说明固定推荐 `0.1.5+`。
+- `metadata.yaml` version 同步到 `v0.1.6` 或新的发布版本。
+- README 安装说明固定推荐 `0.1.6+`。
 - 社区上架文档进入仓库。

@@ -25,7 +25,7 @@ def test_readme_documents_installation_and_smoke_test_commands():
 
     assert "安装" in readme
     assert "astrbot-proactive-core>=0.1.0,<0.2.0" in readme
-    assert "astrbot-plugin-proactive-chat==0.1.5" in readme
+    assert "astrbot-plugin-proactive-chat==0.1.6" in readme
     assert "docs/INSTALL_ASTRBOT.md" in readme
     assert "uv run --extra dev pytest -q" in readme
     assert "/proactive_status" in readme
