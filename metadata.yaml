@@ -1,0 +1,9 @@
+name: "astrbot_plugin_proactive_chat"
+display_name: "主动消息"
+author: "aitwo"
+version: "v0.1.0"
+desc: "AIRI-like proactive chat plugin for AstrBot with text presence, voice loop, memory, and safe diagnostics."
+repo: "https://github.com/yurisachan16-creator/astrbot_plugin_proactive_chat"
+astrbot_version: ">=4.8.0"
+support_platforms:
+  - aiocqhttp

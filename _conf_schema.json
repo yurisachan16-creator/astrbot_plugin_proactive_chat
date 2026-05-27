@@ -1,0 +1,125 @@
+{
+  "enabled_groups": {
+    "type": "list",
+    "description": "启用主动聊天的 QQ 群号",
+    "hint": "留空时不响应任何群。",
+    "default": []
+  },
+  "persona_id": {
+    "type": "string",
+    "_special": "select_persona",
+    "description": "AstrBot 人格",
+    "default": ""
+  },
+  "model_provider": {
+    "type": "string",
+    "_special": "select_provider",
+    "description": "LLM provider",
+    "default": ""
+  },
+  "stt_provider": {
+    "type": "string",
+    "_special": "select_provider_stt",
+    "description": "STT provider",
+    "default": ""
+  },
+  "tts_provider": {
+    "type": "string",
+    "_special": "select_provider_tts",
+    "description": "TTS provider",
+    "default": ""
+  },
+  "proactive_enabled": {
+    "type": "bool",
+    "description": "启用主动发言",
+    "default": false
+  },
+  "ambient_enabled": {
+    "type": "bool",
+    "description": "启用氛围触发",
+    "default": false
+  },
+  "background_worker_enabled": {
+    "type": "bool",
+    "description": "启用后台队列 worker",
+    "hint": "开启后插件初始化时会启动后台循环处理队列任务。",
+    "default": false
+  },
+  "worker_interval_seconds": {
+    "type": "int",
+    "description": "后台 worker 轮询间隔秒数",
+    "default": 5
+  },
+  "voice_output_enabled": {
+    "type": "bool",
+    "description": "允许语音输出",
+    "default": false
+  },
+  "voice_input_enabled": {
+    "type": "bool",
+    "description": "允许语音输入",
+    "hint": "开启后，群聊语音消息会先进入队列，再由 STT provider 转写后进入主动回复链路。",
+    "default": false
+  },
+  "quiet_hours_enabled": {
+    "type": "bool",
+    "description": "启用免打扰时段",
+    "default": true
+  },
+  "quiet_hours_start": {
+    "type": "string",
+    "description": "免打扰开始时间",
+    "default": "23:00"
+  },
+  "quiet_hours_end": {
+    "type": "string",
+    "description": "免打扰结束时间",
+    "default": "08:00"
+  },
+  "cooldown_seconds": {
+    "type": "int",
+    "description": "每群回复冷却秒数",
+    "default": 120
+  },
+  "daily_reply_limit": {
+    "type": "int",
+    "description": "每群每日主动回复上限",
+    "default": 24
+  },
+  "global_worker_concurrency": {
+    "type": "int",
+    "description": "全局 worker 并发上限",
+    "default": 2
+  },
+  "stt_worker_concurrency": {
+    "type": "int",
+    "description": "STT worker 并发上限",
+    "default": 1
+  },
+  "llm_worker_concurrency": {
+    "type": "int",
+    "description": "LLM worker 并发上限",
+    "default": 1
+  },
+  "tts_worker_concurrency": {
+    "type": "int",
+    "description": "TTS worker 并发上限",
+    "default": 1
+  },
+  "queue_database_path": {
+    "type": "string",
+    "description": "SQLite 队列数据库路径",
+    "hint": "可以使用相对路径或绝对路径。默认写入 data/proactive_chat.sqlite3。",
+    "default": "data/proactive_chat.sqlite3"
+  },
+  "admin_user_ids": {
+    "type": "list",
+    "description": "管理员 QQ 号",
+    "default": []
+  },
+  "kill_switch": {
+    "type": "bool",
+    "description": "立即关闭主动聊天",
+    "default": false
+  }
+}
