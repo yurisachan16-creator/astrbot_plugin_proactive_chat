@@ -10,7 +10,7 @@ import types
 def test_plugin_package_imports():
     import proactive_chat
 
-    assert proactive_chat.__version__ == "0.1.6"
+    assert proactive_chat.__version__ == "0.1.7"
 
 
 class FakeContext:

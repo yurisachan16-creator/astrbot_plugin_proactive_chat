@@ -27,7 +27,7 @@
 ## P1：0.1.x 修复
 
 - [x] 判断是否需要发布 `0.1.7` 来修复 P0 实机验证发现的问题：目前不需要，`0.1.6` 已覆盖 P0 暴露的安装、导入和命令入队问题。
-- [ ] 如果发布 `0.1.7`，必须重新跑干净 PyPI 安装验证。
+- [ ] 发布 `0.1.7` 并重新跑干净 PyPI 安装验证。
 - [x] 把旧版本说明写入 release notes，推荐用户使用最新 patch。
 
 ## P2：v0.2 设计
@@ -44,4 +44,4 @@
 - [x] `/proactive_status` 输出 voice input/output 和 STT/TTS provider 状态。
 - [x] status 输出脱敏，不暴露 token、Authorization、cookie、完整 URL、base64、本地路径。
 - [x] 保持现有语音 worker 行为：STT 失败不调用 LLM，TTS 失败回退文本，投递失败不计入限流。
-- [ ] 如需对外发版，发布 `0.1.7` 并重新跑干净 PyPI 安装验证。
+- [ ] 对外发布 `0.1.7` 并重新跑干净 PyPI 安装验证。

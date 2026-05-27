@@ -10,7 +10,7 @@
 
 ## 推荐版本
 
-- 插件：`astrbot-plugin-proactive-chat==0.1.6`
+- 插件：`astrbot-plugin-proactive-chat==0.1.7`
 - 核心库：`astrbot-proactive-core==0.1.0`
 
 不要推荐 `0.1.0` 或 `0.1.1`：
@@ -18,6 +18,7 @@
 - `0.1.0` 的 PyPI wheel 未声明 core runtime dependency。
 - `0.1.1` 补了 dependency，但 wheel 未包含完整 AstrBot 插件入口文件。
 - `0.1.6` 是首个完整可安装版本。
+- `0.1.7` 增加 `/proactive_status` 语音 provider 状态诊断，是当前推荐版本。
 
 ## 仓库和包
 
@@ -74,9 +75,9 @@ Discord 已在设计目标内，但在没有完成实机验证前，不建议写
 ## 上架前检查清单
 
 - [x] `metadata.yaml` 版本与推荐安装版本一致。
-- [x] README 中文安装说明指向 `0.1.6`。
+- [x] README 中文安装说明指向 `0.1.7`。
 - [x] `docs/INSTALL_ASTRBOT.md` 已完成一次 QQ 实机记录。
-- [x] PyPI 页面能显示 `astrbot-plugin-proactive-chat==0.1.6`。
+- [ ] PyPI 页面能显示 `astrbot-plugin-proactive-chat==0.1.7`。
 - [x] `docs/RELEASE_0.1.6.md` 已准备 GitHub Release 内容。
 - [x] GitHub Release `v0.1.6` 可访问：https://github.com/yurisachan16-creator/astrbot_plugin_proactive_chat/releases/tag/v0.1.6
 - [ ] 截图包含配置页和 `/proactive_status` 输出。

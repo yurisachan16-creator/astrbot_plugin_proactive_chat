@@ -22,7 +22,7 @@
 推荐安装当前完整可安装版本：
 
 ```bash
-uv pip install astrbot-plugin-proactive-chat==0.1.6
+uv pip install astrbot-plugin-proactive-chat==0.1.7
 ```
 
 它会自动安装兼容的核心库：
@@ -31,7 +31,7 @@ uv pip install astrbot-plugin-proactive-chat==0.1.6
 astrbot-proactive-core>=0.1.0,<0.2.0
 ```
 
-不要优先安装 `0.1.0` 或 `0.1.1`。`0.1.6` 是当前推荐版本，包含 PyPI runtime dependency、完整 AstrBot 插件入口文件，以及 AstrBot 包路径导入修复。
+不要优先安装 `0.1.0` 或 `0.1.1`。`0.1.7` 是当前推荐版本，包含 PyPI runtime dependency、完整 AstrBot 插件入口文件、AstrBot 包路径导入修复，以及 `/proactive_status` 语音 provider 状态诊断。
 
 本地开发安装：
 
@@ -79,6 +79,7 @@ uv run --extra dev ruff check .
 - 语音输出：`voice_output_enabled=true` 时，worker 会用 AstrBot 当前 TTS provider 生成音频，并通过 `Record` 音频段主动发送；TTS 或语音发送失败时自动回退文本。只有语音或文本最终成功投递后才计入限流。
 - 语音输入：`voice_input_enabled=true` 时，纯群聊语音消息会入队为 `voice_group_message`，worker 先做限流，再用 AstrBot 当前 STT provider 转写，之后复用现有 LLM 和投递链路。文本+语音混合消息固定文本优先，避免重复入队。STT 失败或空转写不会调用 LLM，也不会计入限流。
 - 管理命令：提供 `/proactive_status`、`/proactive_pause`、`/proactive_resume`、`/proactive_once`。这些命令需要 AstrBot admin 权限，用于查看队列、暂停/恢复后台 worker、手动处理一个任务。
+- 语音诊断：`/proactive_status` 会显示 voice input/output 是否启用，以及 STT/TTS provider 的 `available`、`missing`、`failed` 或 `disabled` 状态；失败细节只显示公开安全 failure code。
 
 后续模块会按社区插件方式拆分：
 
