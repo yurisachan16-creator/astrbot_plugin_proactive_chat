@@ -166,3 +166,38 @@ TTS provider：
 问题：
 - 
 ```
+
+## 2026-05-27 QQ 实机记录
+
+```markdown
+日期：2026-05-27
+AstrBot 版本：v4.23.2
+插件来源：GitHub main
+插件提交：ffc0198
+插件版本：v0.1.6
+core 版本：0.1.0
+平台：QQ / aiocqhttp
+测试群：892***726
+LLM provider：AstrBot 当前默认 provider
+STT provider：未测
+TTS provider：未测插件语音输出；环境中另有 GPT-SoVITS 装饰插件会处理命令回复
+
+结果：
+- 插件加载：通过，AstrBot 日志显示 Plugin astrbot_plugin_proactive_chat (v0.1.6) by aitwo。
+- 配置 schema/defaults：通过，配置文件生成并保持安全默认值；默认 enabled_groups=[]、proactive_enabled=false、ambient_enabled=false、background_worker_enabled=false、voice_input_enabled=false、voice_output_enabled=false、quiet_hours_enabled=true、kill_switch=false。
+- 安装依赖：通过，astrbot-proactive-core==0.1.0 可 import；远端访问 PyPI 出现 SSL EOF，实机本次使用本地 wheel fallback 安装 core。
+- /proactive_status：通过，输出包含“队列: 可用”“任务: queued=3”“worker: 可用”“后台 worker: 未运行”。
+- 文本入队：通过，模拟 QQ 群普通文本后 jobs 从 0 增至 1，任务为 ambient_group_message / queued。
+- /proactive_once：通过，最早的 ambient_group_message 从 queued 进入 completed/published，命令返回“已处理 1 个队列任务”。
+- /proactive_pause：通过，返回“后台 worker 已暂停”。
+- /proactive_resume：通过，返回“后台 worker 已启动”；验证后已再次执行 /proactive_pause，避免继续处理旧队列。
+- 命令不入队：通过，v0.1.6 后 /proactive_status 前后 jobs 数量保持不变。
+- 失败脱敏：通过，旧版本遗留命令任务因 cooldown_active 失败，公开字段只包含 cooldown_active；队列公开字段扫描未发现 Authorization、Bearer、cookie、token、api key、签名 URL、base64/audio payload 或本地路径。
+- 语音输入：未测。
+- 语音输出：未测。
+
+问题：
+- v0.1.2 到 v0.1.5 不建议上架：实机验证发现 AstrBot 包路径导入和命令入队问题，已在 v0.1.6 修复。
+- 远端机器访问 PyPI 有 SSL EOF，不能证明 AstrBot 在该机上可自动从 PyPI 拉取 core；但 requirements.txt 与本地构建门禁通过，core wheel 安装和 import 已验证。
+- 本次用 OneBot HTTP 事件模拟 QQ 群消息；真实 QQ/NapCat 连接在线，AstrBot aiocqhttp 已连接。
+```

@@ -2,15 +2,16 @@
 
 ## P0：实机安装验证
 
-- [ ] 在真实 AstrBot 环境安装 `astrbot-plugin-proactive-chat==0.1.6`。
-- [ ] 确认自动安装 `astrbot-proactive-core==0.1.0`。
-- [ ] 确认 AstrBot 插件列表能识别“主动消息”。
-- [ ] 确认配置页显示 `_conf_schema.json` 字段。
-- [ ] QQ 测试群执行 `/proactive_status`。
-- [ ] QQ 测试群发送文本消息并确认 queued 增加。
-- [ ] 执行 `/proactive_once` 并确认主动文本回复。
-- [ ] 执行 `/proactive_pause` 和 `/proactive_resume`。
-- [ ] 记录一次失败场景，确认错误不泄露敏感信息。
+- [x] 在真实 AstrBot 环境安装 `astrbot-plugin-proactive-chat==0.1.6`。
+- [x] 确认 `astrbot-proactive-core==0.1.0` 可安装并 import。
+- [x] 确认 AstrBot 插件列表能识别“主动消息”。
+- [x] 确认 `_conf_schema.json` 默认值能生成安全配置。
+- [x] QQ 测试群执行 `/proactive_status`。
+- [x] QQ 测试群发送文本消息并确认 queued 增加。
+- [x] 执行 `/proactive_once` 并确认任务 completed/published。
+- [x] 执行 `/proactive_pause` 和 `/proactive_resume`。
+- [x] 记录一次失败场景，确认错误不泄露敏感信息。
+- [ ] 发布 `astrbot-plugin-proactive-chat==0.1.6` 到 PyPI。
 
 ## P1：社区上架
 
