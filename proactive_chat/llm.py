@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from proactive_chat.async_utils import maybe_await
+from .async_utils import maybe_await
 
 
 class LLMUnavailableError(RuntimeError):

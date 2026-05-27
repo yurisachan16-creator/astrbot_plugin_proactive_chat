@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from proactive_chat.async_utils import maybe_await
+from .async_utils import maybe_await
 
 
 @dataclass

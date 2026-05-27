@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from proactive_chat.config import ProactiveChatConfig
+from .config import ProactiveChatConfig
 
 
 def create_default_queue(

@@ -11,7 +11,7 @@ def test_metadata_declares_astrbot_plugin_identity():
     metadata = (ROOT / "metadata.yaml").read_text(encoding="utf-8")
 
     assert 'name: "astrbot_plugin_proactive_chat"' in metadata
-    assert 'version: "v0.1.3"' in metadata
+    assert 'version: "v0.1.4"' in metadata
     assert "AstrBot" in metadata
     assert "shared queue" in metadata
     assert "memory" not in metadata

@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 from urllib.parse import parse_qs, urlsplit
 
-from proactive_chat.llm import EmptyLLMResponseError, LLMUnavailableError
+from .llm import EmptyLLMResponseError, LLMUnavailableError
 
 
 class AmbientWorker:
