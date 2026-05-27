@@ -18,16 +18,17 @@
 
 - [x] README 首页明确推荐 `astrbot-plugin-proactive-chat==0.1.6`。
 - [x] 上架说明引用 `docs/COMMUNITY_LISTING.md`。
+- [x] 准备 `v0.1.6` release notes。
 - [ ] 准备配置页截图。
 - [ ] 准备 `/proactive_status` 截图。
-- [ ] 完成一次 QQ 实机记录并附到 issue 或 release comment。
+- [x] 完成一次 QQ 实机记录，并整理到 `docs/INSTALL_ASTRBOT.md` 和 `docs/RELEASE_0.1.6.md`。
 - [x] 确认 `support_platforms` 暂只写 `aiocqhttp`。
 
 ## P1：0.1.x 修复
 
-- [ ] 判断是否需要发布 `0.1.7` 来修复 P0 实机验证发现的问题。
+- [x] 判断是否需要发布 `0.1.7` 来修复 P0 实机验证发现的问题：目前不需要，`0.1.6` 已覆盖 P0 暴露的安装、导入和命令入队问题。
 - [ ] 如果发布 `0.1.7`，必须重新跑干净 PyPI 安装验证。
-- [ ] 把旧版本说明写入 release notes，推荐用户使用最新 patch。
+- [x] 把旧版本说明写入 release notes，推荐用户使用最新 patch。
 
 ## P2：v0.2 设计
 
