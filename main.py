@@ -14,7 +14,7 @@ try:
         extract_voice_group_message,
     )
     from .proactive_chat.llm import AstrBotLLMAdapter
-    from .proactive_chat.management import format_status, snapshot_queue
+    from .proactive_chat.management import format_status, snapshot_queue, voice_snapshot_from_status
     from .proactive_chat.queue_factory import create_default_queue
     from .proactive_chat.rate_limit import InMemoryRateLimiter
     from .proactive_chat.voice import AstrBotVoiceAdapter
@@ -31,7 +31,7 @@ except ImportError:
         extract_voice_group_message,
     )
     from proactive_chat.llm import AstrBotLLMAdapter
-    from proactive_chat.management import format_status, snapshot_queue
+    from proactive_chat.management import format_status, snapshot_queue, voice_snapshot_from_status
     from proactive_chat.queue_factory import create_default_queue
     from proactive_chat.rate_limit import InMemoryRateLimiter
     from proactive_chat.voice import AstrBotVoiceAdapter
@@ -235,12 +235,22 @@ class ProactiveChatPlugin(Star):
         return "已处理 1 个队列任务" if processed else "没有可处理的队列任务"
 
     def management_status(self) -> str:
+        voice_status = self.voice.provider_status(
+            unified_msg_origin=_status_unified_msg_origin(self.config),
+            voice_input_enabled=self.config.voice_input_enabled and not self.config.kill_switch,
+            voice_output_enabled=self.config.voice_output_enabled and not self.config.kill_switch,
+        )
         return format_status(
             snapshot_queue(
                 self.queue,
                 worker_available=self.worker is not None,
                 background_running=(
                     self.background_task is not None and not self.background_task.done()
+                ),
+                voice=voice_snapshot_from_status(
+                    input_enabled=self.config.voice_input_enabled and not self.config.kill_switch,
+                    output_enabled=self.config.voice_output_enabled and not self.config.kill_switch,
+                    status=voice_status,
                 ),
             )
         )
@@ -267,3 +277,8 @@ def _create_queue(queue_factory: object | None, config: ProactiveChatConfig) -> 
     if queue_factory is None:
         return create_default_queue(config)
     return queue_factory(config)
+
+
+def _status_unified_msg_origin(config: ProactiveChatConfig) -> str:
+    group_id = config.enabled_groups[0] if config.enabled_groups else "status"
+    return f"aiocqhttp:group:{group_id}"

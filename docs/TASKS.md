@@ -32,8 +32,16 @@
 
 ## P2：v0.2 设计
 
-- [ ] 固定 voice adapter 协议。
-- [ ] 给 `/proactive_status` 增加 STT/TTS provider 状态。
-- [ ] 设计 provider 插件模板仓库。
-- [ ] 决定第一个真实 provider 插件：本地 HTTP / OpenAI / Gemini。
-- [ ] 写 v0.2 design doc 后再进入实现。
+- [x] 固定 voice adapter 协议设计。
+- [x] 设计 `/proactive_status` 的 STT/TTS provider 状态输出。
+- [x] 设计 provider 插件模板仓库。
+- [x] 决定第一个真实 provider 插件：本地 HTTP provider。
+- [x] 写 v0.2 design doc，后续再进入实现。
+
+## P2：v0.2 最小功能验收
+
+- [x] 实现 STT/TTS provider status：available / missing / failed / disabled。
+- [x] `/proactive_status` 输出 voice input/output 和 STT/TTS provider 状态。
+- [x] status 输出脱敏，不暴露 token、Authorization、cookie、完整 URL、base64、本地路径。
+- [x] 保持现有语音 worker 行为：STT 失败不调用 LLM，TTS 失败回退文本，投递失败不计入限流。
+- [ ] 如需对外发版，发布 `0.1.7` 并重新跑干净 PyPI 安装验证。
